@@ -9,11 +9,10 @@ export class CreateSettings1619132649731 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'uuid',
+                        type: 'varchar',
                         isPrimary: true,
-                        isGenerated: true,
                         generationStrategy: 'uuid',
-                        
+                        default: '(uuid())'
                     },
                     {
                         name: 'username',

@@ -1,9 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity("settings")
 class Setting {
 
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @Column()
@@ -13,10 +13,11 @@ class Setting {
     chat: boolean;
 
     @CreateDateColumn()
-    created_art: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
     updated_at: Date;
+    
 }
 
 export default Setting;
