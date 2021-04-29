@@ -1,15 +1,5 @@
-import 'reflect-metadata';
-import express from 'express';
+import {http} from './http'
 
-import './database';
-
-import routes from './routes';
-
-const app = express();
-
-app.use(express.json());
-app.use(routes);
-
-app.listen(3000, () => {
+http.listen(3000, () => {
     console.log('server running on port 3000!');
 });
