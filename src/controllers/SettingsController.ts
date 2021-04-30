@@ -15,4 +15,25 @@ export default class SettingsController {
             res.status(400).send(err.message)
         }
     };
+
+    async findByUsername (req: Request, res: Response): Promise<void> {
+        const {username} = req.params;
+
+        const settingsService = new SettingsService();
+
+        const settings = await settingsService.findByUsername(username);
+
+        res.json(settings); 
+    }
+
+    async update (req: Request, res: Response): Promise<void> {
+        const {username} = req.params;
+        const {chat} = req.body;
+
+        const settingsService = new SettingsService();
+
+        await settingsService.update(username, chat);
+
+        res.sendStatus(200); 
+    }
 }

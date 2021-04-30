@@ -22,7 +22,7 @@ const http = createServer(app);
 const io = new Server(http);
 
 io.on('connection', (socket: Socket) => {
-    // console.log("Nova conexão", socket.id);
+    console.log("Nova conexão", socket.id);
 });
 
 

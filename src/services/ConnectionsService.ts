@@ -22,5 +22,9 @@ export default class ConnectionsService {
         return this.connectionsRepository.save(connection);
     }
 
+    public findByUserId (user_id: string): Promise<Connection | undefined> {
+        return this.connectionsRepository.findOne({user_id});
+    }
+
     
 }
