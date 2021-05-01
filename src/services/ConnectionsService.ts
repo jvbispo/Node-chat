@@ -26,5 +26,10 @@ export default class ConnectionsService {
         return this.connectionsRepository.findOne({user_id});
     }
 
-    
+    public async findAllWithoutAdmin (): Promise<Connection[] | undefined> {
+        return this.connectionsRepository.find({
+            where: {admin_id: null},
+            relations: ["user"],
+        });
+    };
 }
