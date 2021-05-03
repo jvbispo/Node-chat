@@ -32,4 +32,8 @@ export default class ConnectionsService {
             relations: ["user"],
         });
     };
+
+    public async findBySocketId(socket_id: string): Promise<Connection | undefined> {
+        return this.connectionsRepository.findOne({socket_id});
+    }
 }
