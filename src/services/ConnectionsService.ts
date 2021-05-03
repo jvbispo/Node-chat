@@ -36,4 +36,8 @@ export default class ConnectionsService {
     public async findBySocketId(socket_id: string): Promise<Connection | undefined> {
         return this.connectionsRepository.findOne({socket_id});
     }
+
+    public async  updateAdminId (admin_id: string, user_id: string) {
+        this.connectionsRepository.createQueryBuilder().update(Connection).set({ admin_id }).where("user_id = :user_id", { user_id}).execute();
+    }
 }

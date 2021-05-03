@@ -31,7 +31,7 @@ export default class SettingsService {
     }
 
     public async update(username: string, chat: boolean): Promise<void> {
-        this.settingsRepository.createQueryBuilder().update(Setting).set({chat}).where("username = :username", {username}).execute();
+        this.settingsRepository.createQueryBuilder().update(Setting).set({ chat }).where("username = :username", { username }).execute();
 
     }
 }
