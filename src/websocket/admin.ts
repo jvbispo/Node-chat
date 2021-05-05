@@ -41,7 +41,7 @@ io.on("connection", async (socket) => {
     socket.on("admin_user_in_suport", async params => {
         const {user_id} = params;
 
-        await connectionsService.updateAdminId(user_id, socket.id);
+        await connectionsService.updateAdminId(socket.id, user_id);
         
         const allConnectionsWithoutAdmin = await connectionsService.findAllWithoutAdmin();
 

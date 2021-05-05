@@ -1,4 +1,4 @@
-let socker_admin_id = null;
+let socket_admin_id = null;
 let emailUser = null;
 let socket = null
 
@@ -36,7 +36,6 @@ document.querySelector("#start_chat").addEventListener("click", (event) => {
     socket.on("client_list_all", (messages) => {
         let template_cliet = document.getElementById("message-user-template").innerHTML;
         let template_admin = document.getElementById("admin-template").innerHTML;
-        console.log(messages)
 
         messages.forEach(message => {
             if (!message.admin_id) {
@@ -69,21 +68,23 @@ document.querySelector("#start_chat").addEventListener("click", (event) => {
 });
 
 document.querySelector("#send_message_button").addEventListener("click", event => {
-    const text = document.getElementById('message_user').innerHTML;
-    
+    const text = document.getElementById("message_user").value;
     const params = {
         text,
-        socker_admin_id,
+        socket_admin_id,
     }
 
     socket.emit("client_send_to_admin", params);
 
-    const template_cliet = document.getElementById("message_user_template").innerHTML;
+    const template_client = document.getElementById("message-user-template").innerHTML;
 
-    const rendered = Mustache.render(template_cliet, {
-        message: text.value,
+    const rendered = Mustache.render(template_client, {
+        message: text,
         email: emailUser,
     });
+
+    document.getElementById("messages").innerHTML += rendered;
+    document.getElementById("message_user").value = '';
 });
 
 

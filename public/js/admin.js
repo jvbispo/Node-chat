@@ -3,6 +3,7 @@ let connectionsUsers = [];
 
 socket.on("admin_list_all_users", connections => {
     connectionsUsers = connections;
+    console.log(connections);
     document.getElementById("list_users").innerHTML = "";
     let template = document.getElementById("template").innerHTML;
 
@@ -81,6 +82,7 @@ function sendMessage(id) {
 };
 
 socket.on("admin_receive_message", data => {
+    console.log(connectionsUsers);
     const connection = connectionsUsers.find(conn => conn.socket_id === data.socket_id);
     const divMessages = document.getElementById(`allMessages${connection.user_id}`);
     const createDiv = document.createElement("div");
@@ -88,7 +90,7 @@ socket.on("admin_receive_message", data => {
 
     createDiv.innerHTML = `<span>${connection.user.email}:</span>`;
     createDiv.innerHTML += `<span>${data.message.text}</span>`;
-    createDiv.innerHTML += `<span class="admin_date">${dayjs(message.created_at).format("DD/MM/YYYY HH:mm:ss")}</span>`;
+    createDiv.innerHTML += `<span class="admin_date">${dayjs(data.message.created_at).format("DD/MM/YYYY HH:mm:ss")}</span>`;
 
     divMessages.appendChild(createDiv);
 });
